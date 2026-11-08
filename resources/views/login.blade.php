@@ -59,7 +59,7 @@
             transition: all 0.2s ease;
         }
         .input-field:focus {
-            border-color: #2563eb;
+            border-color: blue;
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
         .input-field::placeholder {
@@ -71,21 +71,13 @@
             top: 50%;
             transform: translateY(-50%);
             cursor: pointer;
-            color: #60a5fa;
+            color: rgb(65, 122, 230);
         }
-        .link-forgot {
-            display: inline-block;
-            color: #3b82f6;
-            font-size: 13px;
-            font-weight: 600;
-            text-decoration: underline;
-            margin-top: 4px;
-            margin-bottom: 24px;
-        }
+        
         .btn-submit {
             width: 100%;
             padding: 14px;
-            background-color: #60a5fa;
+            background-color: rgb(65, 122, 230);
             color: white;
             border: none;
             border-radius: 12px;
@@ -95,7 +87,7 @@
             transition: background-color 0.2s ease;
         }
         .btn-submit:hover {
-            background-color: rgb(65, 122, 230);
+            background-color: blue;
         }
         .register-text {
             text-align: center;
@@ -105,7 +97,7 @@
             font-weight: 600;
         }
         .register-text a {
-            color: #3b82f6;
+            color: rgb(65, 122, 230);
             text-decoration: underline;
         }
         .alert-error {

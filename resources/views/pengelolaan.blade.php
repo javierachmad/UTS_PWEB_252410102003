@@ -1,58 +1,75 @@
 @extends('layouts.app')
 
 @section('content')
-
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <div style="font-family: 'Plus Jakarta Sans', sans-serif;">
+    
     <div style="margin-bottom: 25px;">
-        <h2 style="margin: 0 0 5px 0; font-size: 26px; color: rgb(65, 122, 230); font-weight: 800;">Tambah MatKul</h2>
-        <p style="margin: 0; color: #64748b; font-size: 14px;">Isi formulir di bawah ini untuk menambahkan kartu mata kuliah baru ke halaman Dashboard.</p>
+        <h2 style="margin: 0 0 5px 0; font-size: 26px; color: rgb(65, 122, 230); font-weight: 800;">Detail Mata Kuliah & Tugas</h2>
+        <p style="margin: 0; color: gray; font-size: 14px;">Detail keseluruhan informasi mata kuliah beserta ringkasan dan rincian tugas.</p>
     </div>
 
-    <!-- Form Tambah Mata Kuliah -->
-    <div style="background: white; padding: 30px; border-radius: 20px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(59, 130, 246, 0.08);">
-        <h4 style="margin: 0 0 20px 0; color: rgb(65, 122, 230); font-size: 18px; font-weight: 700;">Form Tambah Mata Kuliah</h4>
+    <!-- Tabel Pengelolaan Ringkasan & Rincian Tugas -->
+    <div style="background: white; padding: 20px; border-radius: 16px; border: 1.5px solid #93c5fd; box-shadow: 0 10px 25px rgba(59, 130, 246, 0.08); width: 100%; overflow-x: auto;">
         
-        <form action="{{ route('tambahMatkul') }}" method="POST">
-            @csrf
-            <input type="hidden" name="username" value="{{ $username }}">
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin-bottom: 15px;">
-                <div>
-                    <label style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: #60a5fa;">Nama Mata Kuliah:</label>
-                    <input type="text" name="nama" required style="width: 100%; padding: 12px; border: 1.5px solid #93c5fd; border-radius: 12px; font-size: 14px; color: #334155; outline: none;">
-                </div>
-
-                <div>
-                    <label style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: #60a5fa;">Jumlah SKS:</label>
-                    <input type="number" name="sks" min="1" max="6" required style="width: 100%; padding: 12px; border: 1.5px solid #93c5fd; border-radius: 12px; font-size: 14px; color: #334155; outline: none;">
-                </div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin-bottom: 15px;">
-                <div>
-                    <label style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: #60a5fa;">Nama Dosen:</label>
-                    <input type="text" name="dosen" required style="width: 100%; padding: 12px; border: 1.5px solid #93c5fd; border-radius: 12px; font-size: 14px; color: #334155; outline: none;">
-                </div>
-
-                <div>
-                    <label style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: #60a5fa;">Kelas:</label>
-                    <input type="text" name="kelas" required style="width: 100%; padding: 12px; border: 1.5px solid #93c5fd; border-radius: 12px; font-size: 14px; color: #334155; outline: none;">
-                </div>
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <label style="display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; color: #60a5fa;">Ringkasan / Deskripsi Materi:</label>
-                <textarea name="ringkasan" rows="4" required style="width: 100%; padding: 12px; border: 1.5px solid #93c5fd; border-radius: 12px; font-size: 14px; color: #334155; font-family: inherit; outline: none;"></textarea>
-            </div>
-
-            <div>
-                <button type="submit" style="padding: 12px 24px; background-color: rgb(65, 122, 230); color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 14px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);">
-                    Simpan Mata Kuliah
-                </button>
-            </div>
-        </form>
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; min-width: 900px;">
+            <thead>
+                <tr style="background-color: #eff6ff; border-bottom: 2px solid #bfdbfe;">
+                    <th style="padding: 15px; color: rgb(65, 122, 230); width: 20%;">Mata Kuliah</th>
+                    <th style="padding: 15px; color: rgb(65, 122, 230); width: 15%;">Dosen & Kelas</th>
+                    <th style="padding: 15px; color: rgb(65, 122, 230); width: 35%;">Ringkasan Materi</th>
+                    <th style="padding: 15px; color: rgb(65, 122, 230); width: 30%;">Rincian Tugas</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($courses as $c)
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                    
+                    <td style="padding: 15px; font-weight: 700; color: black; vertical-align: top;">
+                        {{ $c['nama'] }}
+                        <span style="display: block; font-size: 12px; color: rgb(65, 122, 230); margin-top: 4px;">{{ $c['sks'] }}</span>
+                    </td>
+                    
+                    <td style="padding: 15px; color: black; vertical-align: top;">
+                        <strong>{{ $c['dosen'] }}</strong><br>
+                        <span style="font-size: 12px;">Kelas: {{ $c['kelas'] }}</span>
+                    </td>
+                    
+                    <td style="padding: 15px; color: rgb(75, 72, 72); line-height: 1.6; vertical-align: top;">
+                        {{ $c['ringkasan'] }}
+                    </td>
+                    
+                    <!-- Rincian Tugas (Efek coretan dihapus, teks normal) -->
+                    <td style="padding: 15px; vertical-align: top;">
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            @foreach($c['tugas'] ?? [] as $t)
+                                <div style="display: flex; align-items: flex-start; gap: 10px; font-size: 13px;">
+                                    <div style="margin-top: 2px;">
+                                        @if($t['selesai'])
+                                            <span style="color: green;">✅</span>
+                                        @else
+                                            <span style="color: grey;">⬜</span>
+                                        @endif
+                                    </div>
+                                    <!-- Bagian ini yang diubah: Teks akan selalu berwarna gelap dan tanpa coretan -->
+                                    <span style="color: black; font-weight: 600;">
+                                        {{ $t['nama'] }}
+                                    </span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </td>
+                    
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="4" style="padding: 30px; text-align: center; color: #64748b;">Belum ada data mata kuliah.</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
+
 </div>
 @endsection

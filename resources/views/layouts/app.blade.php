@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>T Tracker</title>
-    <style>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <title>Tracker</title>
+  <style>
         * { box-sizing: border-box; }
         body {
             margin: 0;
@@ -12,10 +13,11 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f6f9;
             color: #333;
-            /* Trik Flexbox agar Footer otomatis di paling bawah */
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            width: 100vw;
+            overflow-x: hidden; 
         }
         .main-content {
             flex: 1;

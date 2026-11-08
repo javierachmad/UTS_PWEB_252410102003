@@ -1,0 +1,54 @@
+
+.nav-wrapper {
+    background-color: rgb(65, 122, 230);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    position: relative;
+    z-index: 50;
+}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 5%;
+    width: 100%;
+    box-sizing: border-box;
+}
+.nav-menu {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+.mobile-btn {
+    display: none; /* Sembunyikan ikon di Laptop */
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Desain Mobile Navbar (Layar HP di bawah 768px) */
+@media (max-width: 768px) {
+    .mobile-btn {
+        display: block; /* Munculkan ikon 3 titik di HP */
+    }
+    .nav-menu {
+        display: none; /* Sembunyikan menu menyamping */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgb(65, 122, 230);
+        padding: 15px 5%;
+        box-sizing: border-box;
+        gap: 15px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    /* Kelas ini akan dipanggil oleh JavaScript saat tombol diklik */
+    .nav-menu.show {
+        display: flex !important; 
+    }
+}

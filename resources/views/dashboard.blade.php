@@ -1,79 +1,90 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- Header Dashboard & Tombol Tambahkan Matkul -->
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
-        <div>
-            <h2 style="margin: 0 0 5px 0; font-size: 26px; color: rgb(65, 122, 230);">Dashboard T Tracker</h2>
-            <p style="margin: 0; color: rgb(85, 85, 85); font-size: 14px;">Ringkasan mata kuliah dan modul tugas aktif kamu.</p>
-        </div>
-        
-        <!-- Tombol Tambahkan Matkul yang Otomatis Mengarahkan ke Pengelolaan -->
-        <a href="{{ route('pengelolaan', ['username' => $username]) }}" 
-           style="padding: 12px 20px; background-color: rgb(65, 122, 230); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 14px; box-shadow: 0 4px 10px rgba(13, 110, 253, 0.2);">
-            Tambahkan Matkul
-        </a>
+<!-- Import Font 'Plus Jakarta Sans' -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<div style="font-family: 'Plus Jakarta Sans', sans-serif;">
+    
+    <!-- Header Dashboard -->
+    <div style="margin-bottom: 25px;">
+        <h2 style="margin: 0 0 5px 0; font-size: 26px; color: rgb(65, 122, 230); font-weight: 800;">
+            Dashboard  
+        <img src="{{ asset('images/logoTracker.jpg') }}" alt="Logo Tracker" style="height: 60px; width: auto; mix-blend-mode: multiply;  margin: 0 -12px; transform: translateY(20px);"> 
+            Tracker
+        </h2>
+        <p style="margin: 0; color: gray; font-size: 14px; font-weight: 500;">Ringkasan mata kuliah aktif kamu.</p>
     </div>
 
     <!-- Banner Welcome -->
-    <div style="background: white; padding: 20px 25px; border-radius: 8px; margin-bottom: 25px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
-        <h3 style="margin: 0 0 5px 0; color:rgb(65, 122, 230); font-size: 20px;">Selamat Datang {{ $username }}</h3>
-        <p style="margin: 0; color: rgb(85, 85, 85); font-size: 14px;">Berikut adalah daftar mata kuliah semester ini beserta ringkasan materinya.</p>
+    <div style="background: white;  padding: 20px 25px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+        <h3 style="margin: 0 0 5px 0; color: rgb(65, 122, 230); font-size: 20px; font-weight: 800;">Selamat Datang, {{ $username }}</h3>
+        <p style="margin: 0; color: gray; font-size: 14px; font-weight: 500;">Berikut adalah daftar mata kuliah semester ini.</p>
     </div>
 
-    <!-- Grid Kartu Mata Kuliah -->
+    <!-- Grid Kartu Mata Kuliah Tanpa Ringkasan -->
     @if(count($courses) > 0)
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 30px;">
-            @foreach($courses as $index => $c)
-            <div style="background-color: #deebff; border-radius: 12px; padding: 22px; border: 1px solid #c0d7fd; display: flex; flex-direction: column; justify-content: space-between;">
+            
+            @foreach($courses as $c)
+            <div style="background-color: #eff6ff; border-radius: 16px; padding: 22px; border: 1.5px solid #bfdbfe; display: flex; flex-direction: column; justify-content: space-between;">
                 <div>
                     <!-- Judul Matkul & SKS -->
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
-                        <h3 style="margin: 0; color: black; font-size: 18px; font-weight: 700;">{{ $c['nama'] }}</h3>
-                        <span style="font-weight: 700; color: #0b1e36; font-size: 16px; white-space: nowrap; margin-left: 10px;">{{ $c['sks'] }}</span>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                        <h3 style="margin: 0; color: #1e293b; font-size: 18px; font-weight: 800;">{{ $c['nama'] }}</h3>
+                        <span style="font-weight: 800; color: #1e293b; font-size: 15px; white-space: nowrap; margin-left: 10px;">{{ $c['sks'] }}</span>
                     </div>
 
-                    <span style="display: block; font-size: 12px; font-weight: 700; color: rgb(65, 122, 230); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">
-                        RINGKASAN
-                    </span>
-                    <p style="margin: 0 0 18px 0; color: rgb(85, 85, 85); font-size: 14px; line-height: 1.5;">
-                        {{ $c['ringkasan'] }}
-                    </p>
-
-                    <!-- Information Dosen & Kelas -->
+                    <!-- Information Dosen & Kelas (Ringkasan Dihapus) -->
                     <div style="display: flex; gap: 30px; margin-bottom: 20px; font-size: 13px;">
                         <div>
                             <span style="display: block; color: rgb(65, 122, 230); font-weight: 700; margin-bottom: 2px;">Dosen</span>
-                            <span style="color: rgb(85, 85, 85); font-weight: 600;">{{ $c['dosen'] }}</span>
+                            <span style="color: gray; font-weight: 600;">{{ $c['dosen'] }}</span>
                         </div>
                         <div>
                             <span style="display: block; color: rgb(65, 122, 230); font-weight: 700; margin-bottom: 2px;">Kelas</span>
-                            <span style="color: rgb(85, 85, 85); font-weight: 600;">{{ $c['kelas'] }}</span>
+                            <span style="color: gray; font-weight: 600;">{{ $c['kelas'] }}</span>
                         </div>
                     </div>
                 </div>
 
-               <form action="{{ route('hapusMatkul') }}" method="POST" style="margin: 0;">
-                    @csrf
-                   
-                    <input type="hidden" name="username" value="{{ $username }}">
-                    <input type="hidden" name="index" value="{{ $index }}">
+                @php
+                    // Hitung progres khusus untuk ditampilkan di Dashboard
+                    $totalTugas = count($c['tugas'] ?? []);
+                    $tugasSelesai = collect($c['tugas'] ?? [])->where('selesai', true)->count();
+                    $persentase = $totalTugas > 0 ? round(($tugasSelesai / $totalTugas) * 100) : 0;
+                @endphp
+
+                <!-- Card Progres Tugas (Gaya Minimalis) -->
+                <div style="background-color: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                        <span style="font-size: 14px; font-weight: 700; color: #0f172a;">Progres tugas</span>
+                        <span style="font-size: 12px; color: gray;">{{ $tugasSelesai }} dari {{ $totalTugas }} tugas</span>
+                    </div>
                     
-                    <button type="submit" style="display: block; width: 100%; text-align: center; padding: 10px; background-color: red; color: white; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer;">
-                        Hapus
-                    </button>
-                </form>
+                    <div style="font-size: 24px; font-weight: 800; color: #0f172a; margin-bottom: 10px;">
+                        {{ $persentase }}<span style="font-size: 16px; color: gray; font-weight: 600;">%</span>
+                    </div>
+
+                    <!-- Bar Track & Fill -->
+                    <div style="background-color: #f1f5f9; border-radius: 10px; height: 8px; width: 100%; overflow: hidden;">
+                        <div style="background-color: #0f172a; height: 100%; width: {{ $persentase }}%; border-radius: 10px;"></div>
+                    </div>
+                </div>
+
+                <!-- Tombol Detail -->
+                <a href="{{ route('pengelolaan', ['username' => $username]) }}" 
+                   style="display: block; text-align: center; padding: 10px; background-color: transparent; border: 2px solid #3b82f6; color: #3b82f6; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 15px; transition: 0.2s;">
+                    Detail
+                </a>
             </div>
             @endforeach
+            
         </div>
     @else
-        <!-- Tampilan Awal Sebelum Ada Matkul Ditambahkan -->
-        <div style="background: white; border-radius: 12px; padding: 40px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.04); margin-bottom: 30px;">
-            <p style="color: rgb(85, 85, 85); font-size: 16px; margin-bottom: 15px;">Belum ada mata kuliah yang kamu tambahkan.</p>
-            <a href="{{ route('pengelolaan', ['username' => $username]) }}" 
-               style="padding: 10px 20px; background-color: rgb(65, 122, 230); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">
-                Tambah Mata Kuliah Sekarang
-            </a>
+        <div style="background: white; border-radius: 16px; padding: 40px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 1.5px solid #e2e8f0; margin-bottom: 30px;">
+            <p style="color: gray; font-size: 16px; margin-bottom: 15px; font-weight: 500;">Belum ada mata kuliah.</p>
         </div>
     @endif
+</div>
 @endsection
