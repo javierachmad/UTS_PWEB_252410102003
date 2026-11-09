@@ -10,7 +10,6 @@
         <p style="margin: 0; color: gray; font-size: 14px;">Detail keseluruhan informasi mata kuliah beserta ringkasan dan rincian tugas.</p>
     </div>
 
-    <!-- Tabel Pengelolaan Ringkasan & Rincian Tugas -->
     <div style="background: white; padding: 20px; border-radius: 16px; border: 1.5px solid #93c5fd; box-shadow: 0 10px 25px rgba(59, 130, 246, 0.08); width: 100%; overflow-x: auto;">
         
         <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; min-width: 900px;">
@@ -40,7 +39,7 @@
                         {{ $c['ringkasan'] }}
                     </td>
                     
-                    <!-- Rincian Tugas (Efek coretan dihapus, teks normal) -->
+                    
                     <td style="padding: 15px; vertical-align: top;">
                         <div style="display: flex; flex-direction: column; gap: 10px;">
                             @foreach($c['tugas'] ?? [] as $t)
@@ -52,7 +51,7 @@
                                             <span style="color: grey;">⬜</span>
                                         @endif
                                     </div>
-                                    <!-- Bagian ini yang diubah: Teks akan selalu berwarna gelap dan tanpa coretan -->
+                               
                                     <span style="color: black; font-weight: 600;">
                                         {{ $t['nama'] }}
                                     </span>

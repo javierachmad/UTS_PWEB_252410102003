@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masuk - T Tracker</title>
-    <!-- Import Font 'Plus Jakarta Sans' agar mirip dengan gambar -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -117,7 +116,7 @@
     <div class="login-card">
         <h1 class="title">Masuk</h1>
 
-        <!-- Notifikasi Error Login jika Password Salah -->
+       
         @if(session('error'))
             <div class="alert-error">
                  {{ session('error') }}
@@ -140,12 +139,10 @@
                     <input type="password" id="passwordInput" name="password" class="input-field" placeholder="Masukkan Password" required>
                 </div>
             </div>
-            <!-- Tombol Masuk -->
             <button type="submit" class="btn-submit">Masuk</button>
         </form>
     </div>
 
-    <!-- Script Sederhana untuk Toggle Intip Password -->
     <script>
         function togglePasswordVisibility() {
             const passwordInput = document.getElementById('passwordInput');

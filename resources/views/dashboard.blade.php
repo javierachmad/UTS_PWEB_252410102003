@@ -1,12 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- Import Font 'Plus Jakarta Sans' -->
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <div style="font-family: 'Plus Jakarta Sans', sans-serif;">
     
-    <!-- Header Dashboard -->
     <div style="margin-bottom: 25px;">
         <h2 style="margin: 0 0 5px 0; font-size: 26px; color: rgb(65, 122, 230); font-weight: 800;">
             Dashboard  
@@ -17,21 +15,19 @@
     </div>
 
     @include('banner')
-
-    <!-- Grid Kartu Mata Kuliah Tanpa Ringkasan -->
     @if(count($courses) > 0)
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 30px;">
             
             @foreach($courses as $c)
             <div style="background-color: #eff6ff; border-radius: 16px; padding: 22px; border: 1.5px solid #bfdbfe; display: flex; flex-direction: column; justify-content: space-between;">
                 <div>
-                    <!-- Judul Matkul & SKS -->
+                    
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
                         <h3 style="margin: 0; color: #1e293b; font-size: 18px; font-weight: 800;">{{ $c['nama'] }}</h3>
                         <span style="font-weight: 800; color: #1e293b; font-size: 15px; white-space: nowrap; margin-left: 10px;">{{ $c['sks'] }}</span>
                     </div>
 
-                    <!-- Information Dosen & Kelas (Ringkasan Dihapus) -->
+                   
                     <div style="display: flex; gap: 30px; margin-bottom: 20px; font-size: 13px;">
                         <div>
                             <span style="display: block; color: rgb(65, 122, 230); font-weight: 700; margin-bottom: 2px;">Dosen</span>
@@ -45,7 +41,7 @@
                 </div>
 
                 @php
-                    // Hitung progres khusus untuk ditampilkan di Dashboard
+                    
                     $totalTugas = count($c['tugas'] ?? []);
                     $tugasSelesai = collect($c['tugas'] ?? [])->where('selesai', true)->count();
                     $persentase = $totalTugas > 0 ? round(($tugasSelesai / $totalTugas) * 100) : 0;
@@ -68,7 +64,7 @@
                     </div>
                 </div>
 
-                <!-- Tombol Detail -->
+             
                 <a href="{{ route('pengelolaan', ['username' => $username]) }}" 
                    style="display: block; text-align: center; padding: 10px; background-color: transparent; border: 2px solid #3b82f6; color: #3b82f6; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 15px; transition: 0.2s;">
                     Detail

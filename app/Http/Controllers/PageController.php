@@ -12,15 +12,12 @@ class PageController extends Controller
     public function dashboard(Request $request) {
         $username = $request->input('username', 'Guest');
 
-        // Pengecekan password dari form login
         if ($request->isMethod('post')) {
             $password = $request->input('password');
             if ($password !== 'rahasia123') {
                 return redirect('/')->with('error', 'Password salah!');
             }
         }
-
-        // Timpa session dengan data terbaru beserta rincian tugasnya
         session(['courses' => [
             [
                 'nama' => 'Pemrograman Berbasis Web', 
@@ -34,7 +31,7 @@ class PageController extends Controller
                     ['nama' => 'Implementasi Session Array', 'selesai' => true],
                     ['nama' => 'Finishing & Dokumentasi README.md', 'selesai' => true]
                 ]
-                // 4 dari 4 tugas selesai = 100%
+ 
             ],
             [
                 'nama' => 'Embedded System', 
@@ -49,7 +46,7 @@ class PageController extends Controller
                     ['nama' => 'Merakit Sasis Mobile Robot', 'selesai' => true],
                     ['nama' => 'Presentasi Video Interaktif', 'selesai' => false]
                 ]
-                // 4 dari 5 tugas selesai = 80%
+                
             ],
             [
                 'nama' => 'UI/UX', 
@@ -62,7 +59,7 @@ class PageController extends Controller
                     ['nama' => 'Desain High-Fidelity di Figma', 'selesai' => true],
                     ['nama' => 'Prototyping & Usability Testing', 'selesai' => false]
                 ]
-                // 2 dari 3 tugas selesai = 67% (Mendekati 65%)
+                
             ]
         ]]);
 
