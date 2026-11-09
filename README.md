@@ -1,4 +1,4 @@
- T Tracker - Task Management Web App
+ Task Tracker - Task Management Web App
 
 Task Tracker adalah aplikasi manajemen tugas mahasiswa berbasis web yang dikembangkan menggunakan framework **Laravel**.  
 Aplikasi ini menggunakan pola arsitektur **MVC (Model-View-Controller)** dan memanfaatkan **Session Array** sebagai penyimpanan data dinamis sementara, sehingga aplikasi dapat berjalan interaktif **tanpa memerlukan konfigurasi database (MySQL)**.
