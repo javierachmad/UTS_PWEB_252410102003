@@ -1,12 +1,11 @@
-# 📚 T Tracker - Task Management Web App
+ T Tracker - Task Management Web App
 
-T Tracker adalah aplikasi manajemen tugas mahasiswa berbasis web yang dikembangkan menggunakan framework **Laravel**. Proyek ini dibuat untuk memenuhi tugas Ujian Tengah Semester (UTS) mata kuliah Pemrograman Berbasis Web. 
-
+Task Tracker adalah aplikasi manajemen tugas mahasiswa berbasis web yang dikembangkan menggunakan framework **Laravel**.  
 Aplikasi ini menggunakan pola arsitektur **MVC (Model-View-Controller)** dan memanfaatkan **Session Array** sebagai penyimpanan data dinamis sementara, sehingga aplikasi dapat berjalan interaktif **tanpa memerlukan konfigurasi database (MySQL)**.
 
 ---
 
-## ✨ Fitur Utama
+##  Fitur Utama
 
 - **Authentication Simulation:** Sistem Login dan Log Out (menggunakan form ber-method POST dan perlindungan `@csrf`).
 - **Dynamic Progress Tracking:** Dashboard dengan *progress bar* yang otomatis menghitung persentase tugas selesai berdasakan data dari Controller.
@@ -15,7 +14,7 @@ Aplikasi ini menggunakan pola arsitektur **MVC (Model-View-Controller)** dan mem
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+##  Teknologi yang Digunakan
 
 - **Backend:** PHP & Framework Laravel
 - **Frontend:** HTML5, CSS3 (Native), Blade Templating Engine
@@ -24,7 +23,7 @@ Aplikasi ini menggunakan pola arsitektur **MVC (Model-View-Controller)** dan mem
 
 ---
 
-## 🚀 Cara Menjalankan Proyek di Lokal (Localhost)
+##  Cara Menjalankan Proyek di Lokal (Localhost)
 
 Karena proyek ini **TIDAK menggunakan database**, proses instalasinya sangat mudah dan cepat. Ikuti langkah-langkah berikut:
 
